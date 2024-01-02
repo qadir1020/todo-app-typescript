@@ -18,8 +18,8 @@ const TodoList = ({ todos, setTodos,completedTodos,setCompletedTodos }: Props) =
     return (
         <div className="container">
             <Droppable droppableId='TodosList'>
-                {(provided) => (
-                    <div className="todos" ref={provided.innerRef}
+                {(provided,snapshot) => (
+                    <div className={`todos ${snapshot.isDraggingOver ? "dragactive":""}`} ref={provided.innerRef}
                         {...provided.droppableProps}
                     >
                         <span className="todos__heading">
@@ -43,8 +43,8 @@ const TodoList = ({ todos, setTodos,completedTodos,setCompletedTodos }: Props) =
             </Droppable>
             <Droppable droppableId='TodosRemove'>
                 {
-                    (provided) => (
-                        <div className="todos remove">
+                    (provided,snapshot) => (
+                        <div className={`todos remove ${snapshot.isDraggingOver ? "dragcomplete":""}`} ref={provided.innerRef} >
                             <span className="todos__heading">
                                 Completed Tasks
                             </span>
